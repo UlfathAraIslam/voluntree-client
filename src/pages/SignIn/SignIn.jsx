@@ -1,66 +1,63 @@
-import React, { use } from "react";
+// components/SignIn/SignInModal.jsx
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
-import { NavLink } from "react-router";
+import Swal from "sweetalert2";
+import React, { useContext, useState } from "react";
 
-const SignIn = () => {
-  const { signInUser } = use(AuthContext);
+const SignIn = ({ isOpen, onClose, switchToRegister }) => {
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
   const handleSignIn = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    //create user
     signInUser(email, password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        Swal.fire("Success!", "Login successful", "success");
+        onClose();
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        setError("Invalid email or password");
       });
   };
+
+  if (!isOpen) return null;
+
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left"></div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <div className="card-body">
-            <h1 className="text-5xl font-bold">SignIn Now!</h1>
-            <form onSubmit={handleSignIn}>
-              <fieldset className="fieldset">
-                <label className="label">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="input"
-                  placeholder="Email"
-                />
-                <label className="label">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="input"
-                  placeholder="Password"
-                />
-                <div>
-                  <p className="mt-2 text-sm">
-                    New here?{" "}
-                    <NavLink
-                      to="/register"
-                      className="text-blue-600 font-semibold hover:underline"
-                    >
-                      Create an account
-                    </NavLink>
-                  </p>
-                </div>
-                <button className="btn bg-[#3B82F6] mt-4">SignIn</button>
-              </fieldset>
-            </form>
-          </div>
+    <dialog open className="modal modal-open">
+      <div className="modal-box bg-base-100 text-base-content">
+        <h2 className="text-xl font-bold mb-4">Login</h2>
+        <form onSubmit={handleSignIn}>
+          <input name="email" type="email" placeholder="Email" className="input input-bordered w-full mb-2" required />
+          <input name="password" type="password" placeholder="Password" className="input input-bordered w-full mb-2" required />
+          {error && <p className="text-error mb-2">{error}</p>}
+          <button className="btn btn-primary w-full mb-2">Login</button>
+        </form>
+
+        <div className="divider">OR</div>
+        <button onClick={() => {
+          signInWithGoogle()
+            .then(() => {
+              Swal.fire("Success!", "Google login successful", "success");
+              onClose();
+            })
+            .catch(() => setError("Google sign-in failed"));
+        }} className="btn btn-outline w-full flex items-center gap-2">
+          <FcGoogle className="text-xl" /> Sign in with Google
+        </button>
+
+        <div className="mt-4 text-center">
+          <p className="text-sm">
+            New here? <button className="link text-blue-600" onClick={switchToRegister}>Create an account</button>
+          </p>
+        </div>
+        <div className="modal-action">
+          <button className="btn btn-sm" onClick={onClose}>Close</button>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 };
 

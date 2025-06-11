@@ -1,57 +1,119 @@
-import React, {use} from "react";
-import {AuthContext} from '../../context/AuthContext/AuthContext';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
-const Register = () => {
+const Register = ({ isOpen, onClose, switchToLogin }) => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [error, setError] = useState("");
 
-  const {createUser} = use(AuthContext);
-    const handleRegister =(e)=>{
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email,password);
-
-        //create user
-      createUser(email,password)
-      .then(result =>{
-        console.log(result.user);
-      })
-      .catch(error => {
-        console.log(error);
-      })
+  const validatePassword = (password) => {
+    if (password.length < 6) {
+      return "Password must be at least 6 characters.";
     }
+    if (!/[A-Z]/.test(password)) {
+      return "Password must contain at least one uppercase letter.";
+    }
+    if (!/[a-z]/.test(password)) {
+      return "Password must contain at least one lowercase letter.";
+    }
+    return null;
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    setError("");
+
+    const form = e.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const photoURL = form.photoURL.value.trim();
+    const password = form.password.value;
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
+
+    createUser(email, password)
+      .then((result) => {
+        // Update user profile with name and photoURL
+        updateUserProfile({ displayName: name, photoURL: photoURL })
+          .then(() => {
+            Swal.fire("Success!", "Registration successful", "success");
+            onClose();
+          })
+          .catch((err) => {
+            console.error("Profile update error:", err);
+            setError("Failed to update user profile");
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        setError("Failed to register: " + error.message);
+      });
+  };
+
+  if (!isOpen) return null;
+
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          
+    <dialog open className="modal modal-open">
+      <div className="modal-box bg-base-100 text-base-content max-w-md w-full">
+        <h2 className="text-xl font-bold mb-4">Register</h2>
+        <form onSubmit={handleRegister} className="space-y-3">
+          <input
+            name="name"
+            type="text"
+            placeholder="Name"
+            className="input input-bordered w-full"
+            required
+          />
+          <input
+            name="photoURL"
+            type="url"
+            placeholder="Photo URL"
+            className="input input-bordered w-full"
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            className="input input-bordered w-full"
+            required
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="input input-bordered w-full"
+            required
+          />
+          {error && <p className="text-error text-sm">{error}</p>}
+          <button type="submit" className="btn btn-primary w-full mt-2">
+            Register
+          </button>
+        </form>
+
+        <div className="mt-4 text-center">
+          <p className="text-sm">
+            Already have an account?{" "}
+            <button
+              type="button"
+              className="link text-blue-600"
+              onClick={switchToLogin}
+            >
+              Sign In
+            </button>
+          </p>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <div className="card-body">
-            <h1 className="text-5xl font-bold">Register Now now!</h1>
-            <form onSubmit={handleRegister}>
-                <fieldset className="fieldset">
-              <label className="label">Email</label>
-              <input 
-              type="email" 
-              name="email"
-              className="input" 
-              placeholder="Email" />
-              <label className="label">Password</label>
-              <input 
-              type="password" 
-              name="password"
-              className="input" placeholder="Password" />
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
-              <button className="btn bg-[#3B82F6] mt-4">Register</button>
-            </fieldset>
-            </form>
-          </div>
+
+        <div className="modal-action">
+          <button type="button" className="btn btn-sm" onClick={onClose}>
+            Close
+          </button>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 };
 
