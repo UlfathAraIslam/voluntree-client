@@ -12,7 +12,7 @@ const slides = [
     description:
       "VolunteerMatch matches inspired people with inspiring causes. It's how volunteers and nonprofits connect to achieve remarkable outcomes",
     image:
-      "https://plus.unsplash.com/premium_photo-1681825054807-2e7bb610a6e7?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://img.freepik.com/free-photo/helping-hands-volunteer-support-community-service-graphic_53876-64955.jpg?ga=GA1.1.948762079.1747489031&semt=ais_hybrid&w=740",
   },
   {
     id: 2,
