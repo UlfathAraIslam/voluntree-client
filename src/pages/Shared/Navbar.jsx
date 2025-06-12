@@ -1,4 +1,3 @@
-// components/Navbar.jsx
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { FiLogIn, FiLogOut } from "react-icons/fi";

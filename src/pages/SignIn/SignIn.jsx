@@ -50,7 +50,7 @@ const SignIn = ({ isOpen, onClose, switchToRegister }) => {
 
         <div className="mt-4 text-center">
           <p className="text-sm">
-            New here? <button className="link text-blue-600" onClick={switchToRegister}>Create an account</button>
+            New here? <button className="link text-primary" onClick={switchToRegister}>Create an account</button>
           </p>
         </div>
         <div className="modal-action">
