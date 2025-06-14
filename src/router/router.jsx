@@ -9,6 +9,7 @@ import Register from '../pages/Register/Register';
 import SignIn from '../pages/SignIn/SignIn';
 import AllVolunteers from '../pages/AllVolunteers/AllVolunteers';
 import VolunteerDetails from '../pages/VolunteerDetails/VolunteerDetails';
+import Error from '../pages/Error/Error';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     {
         path:'/signIn',
         Component:SignIn,
+    },
+    {
+        path:'*',
+        Component:Error,
     },
     ]
   },
