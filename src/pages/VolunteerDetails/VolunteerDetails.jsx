@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router";
+import BeAVolunteer from "../BeAVolunteer/BeAVolunteer";
 
 const VolunteerDetails = () => {
   const volunteer = useLoaderData();
@@ -62,11 +63,19 @@ const VolunteerDetails = () => {
             {volunteersNeeded}
           </p>
 
-          <button className="mt-6 w-full btn btn-primary btn-lg rounded-xl">
+          <button
+            className="mt-6 w-full btn btn-primary btn-lg rounded-xl"
+            onClick={() =>
+              document.getElementById("volunteer_modal")?.showModal()
+            }
+          >
             Be a Volunteer
           </button>
         </div>
       </div>
+
+      {/* 🔽 Volunteer Request Modal */}
+      <BeAVolunteer post={volunteer}/>
     </div>
   );
 };
