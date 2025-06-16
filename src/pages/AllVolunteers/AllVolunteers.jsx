@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 const AllVolunteers = () => {
   const [volunteers, setVolunteers] = useState([]);
@@ -6,7 +7,7 @@ const AllVolunteers = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/volunteers") // replace with your API base URL
+    fetch("http://localhost:3000/volunteers")
       .then((res) => res.json())
       .then((data) => {
         setVolunteers(data);
@@ -45,9 +46,12 @@ const AllVolunteers = () => {
                 <span className="font-medium">Deadline:</span>{" "}
                 {new Date(volunteer.deadline).toLocaleDateString()}
               </p>
-              <button className="btn btn-outline btn-primary w-full">
-                View Details
-              </button>
+              <Link
+                  to={`/volunteers/${volunteer._id}`}
+                  className="inline-block mt-3 px-4 py-2 bg-primary text-white rounded hover:bg-primary-focus transition"
+                >
+                  View Details
+                </Link>
             </div>
           </div>
         ))}

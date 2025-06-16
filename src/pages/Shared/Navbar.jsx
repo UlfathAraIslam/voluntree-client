@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-hover">
             <label tabIndex={0} className="btn btn-ghost">My Profile</label>
             <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li><NavLink to="/add-post">Add Volunteer Need Post</NavLink></li>
+              <li><NavLink to="/add-volunteer-post">Add Volunteer Need Post</NavLink></li>
               <li><NavLink to="/manage-posts">Manage My Posts</NavLink></li>
             </ul>
           </div>
