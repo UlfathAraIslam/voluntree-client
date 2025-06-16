@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
-import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import UpdatePost from "../UpdatePost/UpdatePost";
 
 const ManagePosts = () => {
   const { user } = useContext(AuthContext);
   const [myPosts, setMyPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
   const [myRequests, setMyRequests] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.email) {
@@ -93,7 +93,10 @@ const ManagePosts = () => {
                 <td>
                   <button
                     className="btn btn-sm btn-warning mr-2"
-                    onClick={() => navigate(`/update-post/${post._id}`)}
+                    onClick={() => {
+  setSelectedPost(post);
+  document.getElementById('update-modal').showModal(); // Show modal
+}}
                   >
                     Update
                   </button>
@@ -144,6 +147,26 @@ const ManagePosts = () => {
       ) : (
         <p className="text-center text-gray-500">No volunteer requests found.</p>
       )}
+      <dialog id="update-modal" className="modal">
+  <div className="modal-box max-w-2xl">
+    <form method="dialog" className="modal-backdrop absolute right-2 top-2">
+      <button className="btn btn-sm">✕</button>
+    </form>
+    {selectedPost && (
+      <UpdatePost
+        selectedPost={selectedPost}
+        user={user}
+        setMyPosts={setMyPosts}
+        myPosts={myPosts}
+        onClose={() => {
+          setSelectedPost(null);
+          document.getElementById('update-modal').close();
+        }}
+      />
+    )}
+  </div>
+</dialog>
+
     </div>
   );
 };
