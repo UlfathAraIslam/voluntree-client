@@ -27,7 +27,7 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="navbar-center hidden lg:flex gap-2">
         <NavLink to="/" className="btn btn-ghost text-base">Home</NavLink>
-        <NavLink to="/volunteer-posts" className="btn btn-ghost text-base">All Posts</NavLink>
+        <NavLink to="/all-volunteers" className="btn btn-ghost text-base">All volunteer Need posts</NavLink>
         {user && (
           <div className="dropdown dropdown-hover">
             <label tabIndex={0} className="btn btn-ghost">My Profile</label>
