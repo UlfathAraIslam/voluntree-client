@@ -10,6 +10,7 @@ import SignIn from '../pages/SignIn/SignIn';
 import AllVolunteers from '../pages/AllVolunteers/AllVolunteers';
 import VolunteerDetails from '../pages/VolunteerDetails/VolunteerDetails';
 import Error from '../pages/Error/Error';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,14 @@ const router = createBrowserRouter([
     },
     {
         path:"/volunteers/:id",
-        Component:VolunteerDetails,
+        element: <PrivateRoute>
+          <VolunteerDetails/>
+        </PrivateRoute>,
+        loader: async ({ params }) => {
+          const res = await fetch(`http://localhost:3000/volunteers/${params.id}`);
+
+          return res.json(); 
+        },
     },
     
     {

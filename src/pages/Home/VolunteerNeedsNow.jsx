@@ -26,7 +26,7 @@ const VolunteerNeedsNow = () => {
                 <p className="text-sm text-gray-600">Category: {post.category}</p>
                 <p className="text-sm text-red-500">Deadline: {new Date(post.deadline).toLocaleDateString()}</p>
                 <Link
-                  to={`/volunteer/${post._id}`}
+                  to={`/volunteers/${post._id}`}
                   className="inline-block mt-3 px-4 py-2 bg-primary text-white rounded hover:bg-primary-focus transition"
                 >
                   View Details
