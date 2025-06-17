@@ -9,17 +9,27 @@ const ManagePosts = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [myRequests, setMyRequests] = useState([]);
 
-  useEffect(() => {
-    if (user?.email) {
-      fetch(`http://localhost:3000/my-volunteers?email=${user.email}`)
-        .then(res => res.json())
-        .then(data => setMyPosts(data));
+  const token = localStorage.getItem("voluntree-token");
 
-      fetch(`http://localhost:3000/my-volunteer-requests?email=${user.email}`)
-        .then(res => res.json())
-        .then(data => setMyRequests(data));
+  useEffect(() => {
+    if (user?.email && token) {
+      fetch(`http://localhost:3000/my-volunteers?email=${user.email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setMyPosts(data));
+
+      fetch(`http://localhost:3000/my-volunteer-requests?email=${user.email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setMyRequests(data));
     }
-  }, [user]);
+  }, [user, token]);
 
   // Delete volunteer need post
   const handleDeletePost = async (id) => {
@@ -37,12 +47,15 @@ const ManagePosts = () => {
 
     const res = await fetch(`http://localhost:3000/volunteers/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const data = await res.json();
     if (data.deletedCount) {
       Swal.fire("Deleted!", "Your post has been deleted.", "success");
-      setMyPosts(myPosts.filter(post => post._id !== id));
+      setMyPosts(myPosts.filter((post) => post._id !== id));
     }
   };
 
@@ -62,12 +75,15 @@ const ManagePosts = () => {
 
     const res = await fetch(`http://localhost:3000/volunteerRequests/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const data = await res.json();
     if (data.deletedCount) {
       Swal.fire("Cancelled!", "Your request has been cancelled.", "success");
-      setMyRequests(myRequests.filter(req => req._id !== id));
+      setMyRequests(myRequests.filter((req) => req._id !== id));
     }
   };
 
@@ -94,9 +110,9 @@ const ManagePosts = () => {
                   <button
                     className="btn btn-sm btn-warning mr-2"
                     onClick={() => {
-  setSelectedPost(post);
-  document.getElementById('update-modal').showModal(); // Show modal
-}}
+                      setSelectedPost(post);
+                      document.getElementById("update-modal").showModal();
+                    }}
                   >
                     Update
                   </button>
@@ -147,26 +163,27 @@ const ManagePosts = () => {
       ) : (
         <p className="text-center text-gray-500">No volunteer requests found.</p>
       )}
-      <dialog id="update-modal" className="modal">
-  <div className="modal-box max-w-2xl">
-    <form method="dialog" className="modal-backdrop absolute right-2 top-2">
-      <button className="btn btn-sm">✕</button>
-    </form>
-    {selectedPost && (
-      <UpdatePost
-        selectedPost={selectedPost}
-        user={user}
-        setMyPosts={setMyPosts}
-        myPosts={myPosts}
-        onClose={() => {
-          setSelectedPost(null);
-          document.getElementById('update-modal').close();
-        }}
-      />
-    )}
-  </div>
-</dialog>
 
+      {/* Update Post Modal */}
+      <dialog id="update-modal" className="modal">
+        <div className="modal-box max-w-2xl">
+          <form method="dialog" className="modal-backdrop absolute right-2 top-2">
+            <button className="btn btn-sm">✕</button>
+          </form>
+          {selectedPost && (
+            <UpdatePost
+              selectedPost={selectedPost}
+              user={user}
+              setMyPosts={setMyPosts}
+              myPosts={myPosts}
+              onClose={() => {
+                setSelectedPost(null);
+                document.getElementById("update-modal").close();
+              }}
+            />
+          )}
+        </div>
+      </dialog>
     </div>
   );
 };
