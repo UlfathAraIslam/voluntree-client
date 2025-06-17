@@ -38,7 +38,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
     if (!passwordRegex.test(password)) {
       Swal.fire({
