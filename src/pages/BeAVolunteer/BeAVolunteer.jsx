@@ -9,6 +9,14 @@ const BeAVolunteer = ({ post }) => {
   const handleRequest = async (e) => {
     e.preventDefault();
 
+    //  Prevent request if volunteersNeeded is 0
+  if (post.volunteersNeeded === 0) {
+    toast.error("No more volunteers are needed for this opportunity.");
+    document.getElementById("volunteer_modal").close();
+    return;
+  }
+
+
     const requestData = {
       postId: post._id,
       thumbnail: post.thumbnail,
