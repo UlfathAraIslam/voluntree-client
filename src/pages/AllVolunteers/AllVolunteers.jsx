@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Spinner from "../../components/Spinner/Spinner";
 
 const AllVolunteers = () => {
   const [volunteers, setVolunteers] = useState([]);
@@ -30,7 +31,7 @@ const AllVolunteers = () => {
     fetchVolunteers(searchText);
   };
 
-  if (loading) return <div className="text-center p-10">Loading...</div>;
+  if (loading) return <div className="text-center p-10"><Spinner/></div>;
   if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
 
   return (

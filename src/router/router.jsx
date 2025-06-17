@@ -11,6 +11,7 @@ import Error from "../pages/Error/Error";
 import PrivateRoute from "../routes/PrivateRoute";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import ManagePosts from "../pages/ManagePosts/ManagePosts";
+import Spinner from "../components/Spinner/Spinner";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
 
           return res.json();
         },
+        hydrateFallbackElement: <Spinner/>
       },
       {
         path: "/add-volunteer-post",
@@ -71,6 +73,9 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+],
+{
+  fallbackElement: <Spinner/>
+});
 
 export default router;
