@@ -27,7 +27,7 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="navbar-center hidden lg:flex gap-2">
         <NavLink to="/" className="btn btn-ghost text-base">Home</NavLink>
-        <NavLink to="/all-volunteers" className="btn btn-ghost text-base">All volunteer Need posts</NavLink>
+        <NavLink to="/all-volunteers" className="btn btn-ghost text-base">All Volunteer Need Posts</NavLink>
         {user && (
           <div className="dropdown dropdown-hover">
             <label tabIndex={0} className="btn btn-ghost">My Profile</label>
@@ -39,23 +39,24 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="navbar-center lg:hidden dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost lg:hidden">☰</label>
-        <ul tabIndex={0} className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/volunteer-posts">All Posts</NavLink></li>
-          {user && (
-            <>
-              <li><NavLink to="/add-post">Add Volunteer Need Post</NavLink></li>
-              <li><NavLink to="/manage-posts">Manage My Posts</NavLink></li>
-            </>
-          )}
-        </ul>
-      </div>
-
       {/* Right Side */}
       <div className="navbar-end gap-2">
+        {/* 🍔 Hamburger for mobile */}
+        <div className="dropdown dropdown-end lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost">☰</label>
+          <ul tabIndex={0} className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/all-volunteers">All Posts</NavLink></li>
+            {user && (
+              <>
+                <li><NavLink to="/add-volunteer-post">Add Volunteer Need Post</NavLink></li>
+                <li><NavLink to="/manage-posts">Manage My Posts</NavLink></li>
+              </>
+            )}
+          </ul>
+        </div>
+
+        {/* Auth Buttons */}
         {!user ? (
           <>
             <Link to="/signIn" className="btn btn-outline btn-sm flex items-center gap-1">
@@ -91,6 +92,7 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+
         <ThemeToggle />
       </div>
     </div>
