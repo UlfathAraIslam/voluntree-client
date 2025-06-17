@@ -5,22 +5,22 @@ const stories = [
   {
     name: "Aisha, Bangladesh",
     story: "Through Voluntree, I found a teaching opportunity in my village. It changed my life and many children's futures.",
-    image: "https://i.ibb.co/YR1PtZY/aisha.jpg"
+    image: "https://i.ibb.co/gSzcQ3g/pexels-photo-2379005.jpg"
   },
   {
     name: "Ken, Japan",
     story: "I volunteered for disaster relief and met amazing people. The impact was real, and I’ll never forget it.",
-    image: "https://i.ibb.co/vwZgb8x/ken.jpg"
+    image: "https://i.ibb.co/kXpNLMP/pexels-photo-3812011.jpg"
   },
   {
-    name: "Ken, Japan",
+    name: "Rin, Japan",
     story: "I volunteered for disaster relief and met amazing people. The impact was real, and I’ll never forget it.",
-    image: "https://i.ibb.co/vwZgb8x/ken.jpg"
+    image: "https://i.ibb.co/NWgDfmj/pexels-photo-1239288.jpg"
   },
   {
-    name: "Ken, Japan",
+    name: "Roy, Japan",
     story: "I volunteered for disaster relief and met amazing people. The impact was real, and I’ll never forget it.",
-    image: "https://i.ibb.co/vwZgb8x/ken.jpg"
+    image: "https://i.ibb.co/8s2dVHT/pexels-photo-10031556.jpg"
   },
 ];
 
