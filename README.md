@@ -1,12 +1,38 @@
-# React + Vite
+# 🌿 Voluntree Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Voluntree** is a modern volunteer management platform that allows users to create and join volunteer opportunities. This is the **frontend** of the application, built using React and Tailwind CSS, with Firebase Authentication and a clean, responsive design.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Site
 
-## Expanding the ESLint configuration
+👉 [https://voluntree-ad593.web.app](https://voluntree-ad593.web.app)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Technologies Used
+
+### Core Libraries & Frameworks
+
+- **React** `^19.1.0`
+- **React DOM** `^19.1.0`
+- **Vite** `^6.3.5` (Blazing-fast build tool)
+- **React Router** `^7.6.2`
+
+### Styling
+
+- **Tailwind CSS** `^4.1.8`
+- **DaisyUI** `^5.0.43` (Tailwind CSS component library)
+
+### Firebase
+
+- **Firebase** `^11.9.1` (Authentication & Hosting)
+
+### UI & UX Enhancements
+
+- **SweetAlert2** `^11.22.0` (Alert modals)
+- **React Hot Toast** `^2.5.2` (Toast notifications)
+- **React Icons** `^5.5.0`
+- **React Datepicker** `^8.4.0`
+- **Swiper** `^11.2.8` (Slider library)
+
