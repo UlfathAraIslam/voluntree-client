@@ -21,7 +21,7 @@ const UpdatePost = ({ selectedPost, user, setMyPosts, myPosts, onClose }) => {
     };
 
     const res = await fetch(
-      `https://voluntree-server-ipvpml078-ulfatharaislams-projects.vercel.app/volunteers/${selectedPost._id}`,
+      `https://voluntree-server-liart.vercel.app/volunteers/${selectedPost._id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

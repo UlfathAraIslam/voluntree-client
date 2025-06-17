@@ -43,7 +43,7 @@ const router = createBrowserRouter(
           ),
           loader: async ({ params }) => {
             const res = await fetch(
-              `https://voluntree-server-ipvpml078-ulfatharaislams-projects.vercel.app/volunteers/${params.id}`
+              `https://voluntree-server-liart.vercel.app/volunteers/${params.id}`
             );
 
             return res.json();
