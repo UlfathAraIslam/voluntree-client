@@ -3,6 +3,7 @@ import Banner from './Banner';
 import VolunteerNeedsNow from './VolunteerNeedsNow';
 import WhyVolunteer from './WhyVolunteer';
 import SuccessStories from './SuccessStories';
+import Navbar from '../Shared/Navbar';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <VolunteerNeedsNow/>
             <WhyVolunteer/>
             <SuccessStories/>
+
         </div>
     );
 };

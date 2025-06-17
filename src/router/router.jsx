@@ -12,6 +12,13 @@ import PrivateRoute from "../routes/PrivateRoute";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import ManagePosts from "../pages/ManagePosts/ManagePosts";
 import Spinner from "../components/Spinner/Spinner";
+import AboutUs from "../pages/AboutUs";
+import Contact from "../pages/Contact";
+import FAQ from "../pages/FAQ";
+import Support from "../pages/Support";
+import TermsOfUse from "../pages/TermsOfUse";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import CookiePolicy from "../pages/CookiePolicy";
 
 const router = createBrowserRouter(
   [
@@ -36,7 +43,7 @@ const router = createBrowserRouter(
           ),
           loader: async ({ params }) => {
             const res = await fetch(
-              `https://voluntree-server-liart.vercel.app/volunteers/${params.id}`
+              `https://voluntree-server-ipvpml078-ulfatharaislams-projects.vercel.app/volunteers/${params.id}`
             );
 
             return res.json();
@@ -71,6 +78,34 @@ const router = createBrowserRouter(
         {
           path: "*",
           Component: Error,
+        },
+        {
+          path: "/about-us",
+          Component: AboutUs,
+        },
+        {
+          path: "/contact",
+          Component: Contact,
+        },
+        {
+          path: "/faq",
+          Component: FAQ,
+        },
+        {
+          path: "/support",
+          Component: Support,
+        },
+        {
+          path: "/terms",
+          Component: TermsOfUse,
+        },
+        {
+          path: "/privacy-policy",
+          Component: PrivacyPolicy,
+        },
+        {
+          path: "/cookies",
+          Component: CookiePolicy,
         },
       ],
     },

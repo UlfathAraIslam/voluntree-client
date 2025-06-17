@@ -35,7 +35,7 @@ const AddVolunteerPost = () => {
     };
 
     try {
-      const res = await fetch("https://voluntree-server-liart.vercel.app/volunteers", {
+      const res = await fetch("https://voluntree-server-ipvpml078-ulfatharaislams-projects.vercel.app/volunteers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPost),

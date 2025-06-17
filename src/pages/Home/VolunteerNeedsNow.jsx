@@ -6,7 +6,7 @@ const VolunteerNeedsNow = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("https://voluntree-server-liart.vercel.app/volunteers?limit=6")
+    fetch("https://voluntree-server-ipvpml078-ulfatharaislams-projects.vercel.app/volunteers?limit=6")
       .then((res) => res.json())
       .then((data) => setPosts(data))
       .catch((err) => console.error("Error loading posts", err));
