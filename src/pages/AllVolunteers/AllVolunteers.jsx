@@ -11,7 +11,7 @@ const AllVolunteers = () => {
   const fetchVolunteers = async (query = "") => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/volunteers?search=${query}`);
+      const res = await fetch(`https://voluntree-server-liart.vercel.app/volunteers?search=${query}`);
       const data = await res.json();
       setVolunteers(data);
     // eslint-disable-next-line no-unused-vars

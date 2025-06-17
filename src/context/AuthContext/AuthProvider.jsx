@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
 
   const getCustomJWT = async (email) => {
     try {
-      const res = await fetch('http://localhost:3000/jwt', {
+      const res = await fetch('https://voluntree-server-liart.vercel.app/jwt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

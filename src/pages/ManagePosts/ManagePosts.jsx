@@ -13,7 +13,7 @@ const ManagePosts = () => {
 
   useEffect(() => {
     if (user?.email && token) {
-      fetch(`http://localhost:3000/my-volunteers?email=${user.email}`, {
+      fetch(`https://voluntree-server-liart.vercel.app/my-volunteers?email=${user.email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -21,7 +21,7 @@ const ManagePosts = () => {
         .then((res) => res.json())
         .then((data) => setMyPosts(data));
 
-      fetch(`http://localhost:3000/my-volunteer-requests?email=${user.email}`, {
+      fetch(`https://voluntree-server-liart.vercel.app/my-volunteer-requests?email=${user.email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -45,7 +45,7 @@ const ManagePosts = () => {
 
     if (!result.isConfirmed) return;
 
-    const res = await fetch(`http://localhost:3000/volunteers/${id}`, {
+    const res = await fetch(`https://voluntree-server-liart.vercel.app/volunteers/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ const ManagePosts = () => {
 
     if (!result.isConfirmed) return;
 
-    const res = await fetch(`http://localhost:3000/volunteerRequests/${id}`, {
+    const res = await fetch(`https://voluntree-server-liart.vercel.app/volunteerRequests/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -13,69 +13,71 @@ import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import ManagePosts from "../pages/ManagePosts/ManagePosts";
 import Spinner from "../components/Spinner/Spinner";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: RootLayout,
-    children: [
-      {
-        index: true,
-        Component: Home,
-      },
-      {
-        path: "/all-volunteers",
-        Component: AllVolunteers,
-      },
-      {
-        path: "/volunteers/:id",
-        element: (
-          <PrivateRoute>
-            <VolunteerDetails />
-          </PrivateRoute>
-        ),
-        loader: async ({ params }) => {
-          const res = await fetch(
-            `http://localhost:3000/volunteers/${params.id}`
-          );
-
-          return res.json();
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: RootLayout,
+      children: [
+        {
+          index: true,
+          Component: Home,
         },
-        hydrateFallbackElement: <Spinner/>
-      },
-      {
-        path: "/add-volunteer-post",
-        element: (
-          <PrivateRoute>
-            <AddVolunteerPost />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/manage-posts",
-        element: (
-          <PrivateRoute>
-            <ManagePosts/>
-          </PrivateRoute>
-        ),
-      },
+        {
+          path: "/all-volunteers",
+          Component: AllVolunteers,
+        },
+        {
+          path: "/volunteers/:id",
+          element: (
+            <PrivateRoute>
+              <VolunteerDetails />
+            </PrivateRoute>
+          ),
+          loader: async ({ params }) => {
+            const res = await fetch(
+              `https://voluntree-server-liart.vercel.app/volunteers/${params.id}`
+            );
 
-      {
-        path: "/register",
-        Component: Register,
-      },
-      {
-        path: "/signIn",
-        Component: SignIn,
-      },
-      {
-        path: "*",
-        Component: Error,
-      },
-    ],
-  },
-],
-{
-  fallbackElement: <Spinner/>
-});
+            return res.json();
+          },
+          hydrateFallbackElement: <Spinner />,
+        },
+        {
+          path: "/add-volunteer-post",
+          element: (
+            <PrivateRoute>
+              <AddVolunteerPost />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/manage-posts",
+          element: (
+            <PrivateRoute>
+              <ManagePosts />
+            </PrivateRoute>
+          ),
+        },
+
+        {
+          path: "/register",
+          Component: Register,
+        },
+        {
+          path: "/signIn",
+          Component: SignIn,
+        },
+        {
+          path: "*",
+          Component: Error,
+        },
+      ],
+    },
+  ],
+  {
+    fallbackElement: <Spinner />,
+  }
+);
 
 export default router;

@@ -35,7 +35,7 @@ const AddVolunteerPost = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/volunteers", {
+      const res = await fetch("https://voluntree-server-liart.vercel.app/volunteers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPost),

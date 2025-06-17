@@ -21,7 +21,7 @@ const UpdatePost = ({ selectedPost, user, setMyPosts, myPosts, onClose }) => {
     };
 
     const res = await fetch(
-      `http://localhost:3000/volunteers/${selectedPost._id}`,
+      `https://voluntree-server-liart.vercel.app/volunteers/${selectedPost._id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
