@@ -19,6 +19,8 @@ import Support from "../pages/Support";
 import TermsOfUse from "../pages/TermsOfUse";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import CookiePolicy from "../pages/CookiePolicy";
+import Donate from "../pages/Donate";
+import Blog from "../pages/Blog";
 
 const router = createBrowserRouter(
   [
@@ -106,6 +108,14 @@ const router = createBrowserRouter(
         {
           path: "/cookies",
           Component: CookiePolicy,
+        },
+        {
+          path: "/donate",
+          Component: Donate,
+        },
+        {
+          path: "/blog",
+          Component: Blog,
         },
       ],
     },
