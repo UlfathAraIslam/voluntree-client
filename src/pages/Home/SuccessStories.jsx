@@ -26,7 +26,7 @@ const stories = [
 
 const SuccessStories = () => {
   return (
-    <div className="py-12 bg-white text-base-content">
+    <div className="py-12">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-8">Success Stories</h2>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-8">

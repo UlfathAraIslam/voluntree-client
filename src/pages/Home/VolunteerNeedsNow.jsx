@@ -13,7 +13,7 @@ const VolunteerNeedsNow = () => {
   }, []);
 
   return (
-    <section className="py-10 bg-base-100 text-base-content">
+    <section className="py-10">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-6">Volunteer Needs Now</h2>
 
@@ -22,7 +22,7 @@ const VolunteerNeedsNow = () => {
             <div key={post._id} className="card shadow-md bg-white rounded-lg overflow-hidden">
               <img src={post.thumbnail} alt={post.title} className="h-48 w-full object-cover" />
               <div className="p-4">
-                <h3 className="text-xl font-semibold">{post.title}</h3>
+                <h3 className="text-xl text-gray-700 font-semibold">{post.title}</h3>
                 <p className="text-sm text-gray-600">Category: {post.category}</p>
                 <p className="text-sm text-red-500">Deadline: {new Date(post.deadline).toLocaleDateString()}</p>
                 <Link

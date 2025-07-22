@@ -117,7 +117,7 @@ const AllVolunteers = () => {
           {volunteers.map((volunteer) => (
             <div
               key={volunteer._id}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="rounded-lg shadow-md overflow-hidden"
             >
               <img
                 src={volunteer.thumbnail}
