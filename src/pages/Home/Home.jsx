@@ -5,6 +5,7 @@ import Banner from './Banner';
 import VolunteerNeedsNow from './VolunteerNeedsNow';
 import WhyVolunteer from './WhyVolunteer';
 import SuccessStories from './SuccessStories';
+import FeaturedCauses from './FeaturedCauses';
 
 const Home = () => {
   return (
@@ -44,6 +45,14 @@ const Home = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <SuccessStories />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <FeaturedCauses />
       </motion.div>
     </div>
   );
